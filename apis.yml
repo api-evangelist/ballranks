@@ -1,7 +1,6 @@
 aid: ballranks
 name: Ball Ranks
-description: 'Ball Ranks is a company surfaced via the API Evangelist harvest backlog (source: new-submission)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Ball Ranks provides AI‑driven fantasy sports rankings and projections for football and basketball. The 2026 platform offers free basic rankings and a Premium tier with deeper models, player histories, and a BallChat AI assistant. It serves data via a versioned REST API and a read‑only MCP server, supporting API keys for higher limits. The service is aimed at adult fantasy sports participants and explicitly excludes wagering.'
 url: https://raw.githubusercontent.com/api-evangelist/ballranks/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:new-submission
@@ -12,17 +11,42 @@ created: '2026-10-08'
 modified: '2026-10-08'
 tags:
 - Company
-apis: []
+- Fantasy Sports
+- AI
+- Rankings
+- Projections
+apis:
+  - name: Ball Ranks API
+    description: Read‑only fantasy basketball and football rankings and projections.
+    humanURL: https://ballranks.com/developers
+    baseURL: https://ballranks.com
+    openAPI:
+      url: openapi/ballranks-openapi.json
+      type: OpenAPI
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/ballranks-domain-security.yml
 - type: Website
   url: https://ballranks.com
 - type: Documentation
   url: https://ballranks.com/developers
+- type: APIReference
+  url: https://ballranks.com/openapi.json
+- type: Support
+  url: https://ballranks.com/support
+- type: Blog
+  url: https://ballranks.com/blog
+- type: TermsOfService
+  url: https://ballranks.com/terms
+- type: PrivacyPolicy
+  url: https://ballranks.com/privacy
+- type: SignUp
+  url: https://ballranks.com/auth/sign-up?next=%2Faccount
 x-submission-notes: Fantasy-sports rankings/projections, not wagering.
 x-submission-probe: root/developers 200; /api/v1/rankings/season?sport=football 200 JSON (no key); /api/v1
   bare and invented paths 404; MCP initialize OK at /api/mcp ('ball-ranks-public-api' 1.1.0); soft-404
