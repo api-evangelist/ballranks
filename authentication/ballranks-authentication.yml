@@ -1,0 +1,15 @@
+generated: '2026-10-08'
+method: derived
+source: openapi/ballranks-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: Ball Ranks API key
+  description: Optional Ball Ranks API key. Anonymous requests receive lower limits and Model
+    v0 access only.
+  sources:
+  - openapi/ballranks-openapi.json

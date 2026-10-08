@@ -1,0 +1,6 @@
+generated: '2026-10-08'
+method: probed
+generator: harvest-llms.py
+source: https://ballranks.com/llms.txt
+bytes: 39054
+note: saved verbatim; the provider's own document

@@ -1,0 +1,62 @@
+generated: '2026-10-08'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/ballranks-openapi.json
+format: custom
+envelope:
+  media_type: application/json
+  schema: null
+coverage:
+  operations: 4
+  statuses_declared: 7
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid request.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Invalid or revoked API key.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 403
+  title: Forbidden
+  description: The requested model requires Premium access.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 404
+  title: Not Found
+  description: The player or published data was not found.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 422
+  title: Unprocessable Content
+  description: The requested sport, scope, season, or scoring combination is not supported.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 429
+  title: Too Many Requests
+  description: Request limit reached.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null
+- status: 503
+  title: Service Unavailable
+  description: The API or request limiter is temporarily unavailable.
+  operations: 4
+  media_types:
+  - application/json
+  schema: null

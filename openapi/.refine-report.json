@@ -1,0 +1,19 @@
+{
+  "provider": "ballranks",
+  "sources": [
+    "ballranks-openapi.json"
+  ],
+  "outputs": [
+    "ballranks-rankings-and-projections-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/ballranks-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "ballranks-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+1 apis, 2 total)"
+  ],
+  "skipped": []
+}

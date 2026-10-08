@@ -1,34 +1,61 @@
 aid: ballranks
+
 name: Ball Ranks
-description: 'Ball Ranks provides AI‑driven fantasy sports rankings and projections for football and basketball. The 2026 platform offers free basic rankings and a Premium tier with deeper models, player histories, and a BallChat AI assistant. It serves data via a versioned REST API and a read‑only MCP server, supporting API keys for higher limits. The service is aimed at adult fantasy sports participants and explicitly excludes wagering.'
+
+image: https://ballranks.com/football/ranks/opengraph-image
+
+description: Ball Ranks provides AI‑driven fantasy sports rankings and projections for football and basketball. The 2026 platform offers free
+  basic rankings and a Premium tier with deeper models, player histories, and a BallChat AI assistant. It serves data via a versioned REST API
+  and a read‑only MCP server, supporting API keys for higher limits. The service is aimed at adult fantasy sports participants and explicitly
+  excludes wagering.
+
 url: https://raw.githubusercontent.com/api-evangelist/ballranks/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:new-submission
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-08 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-08'
+
 modified: '2026-10-08'
+
 tags:
 - Company
 - Fantasy Sports
 - AI
 - Rankings
 - Projections
-apis:
-  - name: Ball Ranks API
-    description: Read‑only fantasy basketball and football rankings and projections.
-    humanURL: https://ballranks.com/developers
-    baseURL: https://ballranks.com
-    openAPI:
-      url: openapi/ballranks-openapi.json
-      type: OpenAPI
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/ballranks-agentic-access.yml
+- type: Spectral
+  url: rules/ballranks-rules.yml
+- type: ErrorCatalog
+  url: errors/ballranks-problem-types.yml
+- type: Conformance
+  url: conformance/ballranks-conformance.yml
+- type: LLMsTxt
+  url: llms/ballranks-llms.txt
+- type: Hosts
+  url: hosts/ballranks-hosts.yml
+- type: Vendors
+  url: vendors/ballranks-vendors.yml
+- type: Leadership
+  url: https://ballranks.com/football/team
+- type: Authentication
+  url: authentication/ballranks-authentication.yml
 - type: DomainSecurity
   url: security/ballranks-domain-security.yml
 - type: Website
@@ -47,8 +74,35 @@ common:
   url: https://ballranks.com/privacy
 - type: SignUp
   url: https://ballranks.com/auth/sign-up?next=%2Faccount
+
+apis:
+- name: Ball Ranks API
+  description: Read‑only fantasy basketball and football rankings and projections.
+  humanURL: https://ballranks.com/developers
+  baseURL: https://ballranks.com
+  openAPI:
+    url: openapi/ballranks-openapi.json
+    type: OpenAPI
+  aid: ballranks:ball-ranks-api
+- aid: ballranks:ballranks-rankings-and-projections-api
+  name: Ball Ranks Rankings and projections API
+  description: >-
+    The Rankings and projections API from Ball Ranks — 4 operation(s) for rankings and projections.
+  humanURL: https://ballranks.com/developers
+  tags:
+  - Rankings and projections
+  properties:
+  - type: OpenAPI
+    url: openapi/ballranks-rankings-and-projections-api-openapi.yml
 x-submission-notes: Fantasy-sports rankings/projections, not wagering.
-x-submission-probe: root/developers 200; /api/v1/rankings/season?sport=football 200 JSON (no key); /api/v1
-  bare and invented paths 404; MCP initialize OK at /api/mcp ('ball-ranks-public-api' 1.1.0); soft-404
-  clean (404); no OpenAPI found
+
+x-submission-probe: root/developers 200; /api/v1/rankings/season?sport=football 200 JSON (no key); /api/v1 bare and invented paths 404; MCP initialize
+  OK at /api/mcp ('ball-ranks-public-api' 1.1.0); soft-404 clean (404); no OpenAPI found
+
 x-submitted-by: help@ballranks.com (email/apisio, 2026-10-07T22:32:19+00:00)
+x-enrichment:
+  date: '2026-10-08'
+  status: enriched
+  artifacts_added: 11
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local
