@@ -1,0 +1,30 @@
+aid: ballranks
+name: Ball Ranks
+description: 'Ball Ranks is a company surfaced via the API Evangelist harvest backlog (source: new-submission)
+  and added to the network as a stub for full-pipeline profiling.'
+url: https://raw.githubusercontent.com/api-evangelist/ballranks/refs/heads/main/apis.yml
+x-type: company
+x-source: harvest:new-submission
+x-tier: stub
+x-tier-reason: harvest
+specificationVersion: '0.20'
+created: '2026-10-08'
+modified: '2026-10-08'
+tags:
+- Company
+apis: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+common:
+- type: Website
+  url: https://ballranks.com
+- type: Documentation
+  url: https://ballranks.com/developers
+x-submission-notes: Fantasy-sports rankings/projections, not wagering.
+x-submission-probe: root/developers 200; /api/v1/rankings/season?sport=football 200 JSON (no key); /api/v1
+  bare and invented paths 404; MCP initialize OK at /api/mcp ('ball-ranks-public-api' 1.1.0); soft-404
+  clean (404); no OpenAPI found
+x-submitted-by: help@ballranks.com (email/apisio, 2026-10-07T22:32:19+00:00)
