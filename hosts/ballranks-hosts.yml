@@ -1,36 +1,22 @@
-generated: '2026-10-08'
+generated: '2026-10-12'
 method: derived
 source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
 generator: derive-hosts.py
 summary:
   hosts: 2
-  own: 2
+  own: 1
   other_domain: 0
-  platform: 0
+  platform: 1
   roles:
-  - api
+  - other
   - website
 hosts:
-- host: api.ballranks.com
-  found_by:
-  - contract-discovery
-  types: []
-  serves: []
-  registrable_domain: ballranks.com
-  role: api
-  relation: own
 - host: ballranks.com
   found_by:
   - pointer
   - apis[]
-  - probed
-  - docs-index
-  - spec-found
-  - contract-discovery
-  - well-known
   - vendor-detect
   types:
-  - Leadership
   - Website
   - Documentation
   - APIReference
@@ -39,12 +25,25 @@ hosts:
   - TermsOfService
   - PrivacyPolicy
   - SignUp
+  - GettingStarted
+  - ChangeLog
+  - RateLimits
+  - Pricing
+  - VulnerabilityDisclosure
   serves:
   - api
   - docs
-  - spec
   - hosting
   vendor: vercel
   registrable_domain: ballranks.com
   role: website
   relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubRepository
+  serves: []
+  registrable_domain: github.com
+  role: other
+  relation: platform

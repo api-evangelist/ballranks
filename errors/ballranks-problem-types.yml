@@ -1,8 +1,8 @@
-generated: '2026-10-08'
+generated: '2026-10-12'
 method: derived
 generator: derive-problem-types.py
 source:
-- openapi/ballranks-openapi.json
+- openapi/ballranks-rankings-and-projections-api-openapi.yml
 format: custom
 envelope:
   media_type: application/json
@@ -48,7 +48,7 @@ problems:
   schema: null
 - status: 429
   title: Too Many Requests
-  description: Request limit reached.
+  description: Request limit reached. Wait for Retry-After seconds before retrying.
   operations: 4
   media_types:
   - application/json

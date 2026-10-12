@@ -1,0 +1,5 @@
+Contact: mailto:help@ballranks.com
+Expires: 2027-04-10T14:05:33.526Z
+Canonical: https://ballranks.com/.well-known/security.txt
+Policy: https://ballranks.com/developers#security
+Preferred-Languages: en

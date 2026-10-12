@@ -1,0 +1,50 @@
+generated: '2026-10-12'
+method: probed
+source: https://ballranks.com/api/mcp
+status: live
+description: Ball Ranks serves a read-only remote Model Context Protocol server (Streamable HTTP) on its own host. A GET answers 405 by design;
+  an anonymous POST initialize and tools/list answer 200 with four tools, each annotated read-only, non-destructive and idempotent.
+servers:
+- name: ball-ranks-public-api
+  url: https://ballranks.com/api/mcp
+  transport: streamable-http
+  auth: none
+  anonymous_probe:
+    request: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    accept: application/json, text/event-stream
+    http_status: 200
+  humanURL: https://ballranks.com/developers#mcp
+tools:
+- name: get_week_rankings
+  title: Get weekly football rankings
+  annotations:
+    readOnlyHint: true
+    destructiveHint: false
+    idempotentHint: true
+    openWorldHint: true
+- name: get_season_rankings
+  title: Get season rankings
+  annotations:
+    readOnlyHint: true
+    destructiveHint: false
+    idempotentHint: true
+    openWorldHint: true
+- name: get_player_rankings
+  title: Get a player's season ranking
+  annotations:
+    readOnlyHint: true
+    destructiveHint: false
+    idempotentHint: true
+    openWorldHint: true
+- name: get_player_projections
+  title: Get a player's projection
+  annotations:
+    readOnlyHint: true
+    destructiveHint: false
+    idempotentHint: true
+    openWorldHint: true
+deployment:
+  mode: remote
+  endpoint: https://ballranks.com/api/mcp
+  auth: none
+  verified: probed

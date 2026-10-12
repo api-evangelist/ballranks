@@ -1,43 +1,32 @@
 aid: ballranks
-
 name: Ball Ranks
-
 image: https://ballranks.com/football/ranks/opengraph-image
-
 description: Ball Ranks provides AI‑driven fantasy sports rankings and projections for football and basketball. The 2026 platform offers free
   basic rankings and a Premium tier with deeper models, player histories, and a BallChat AI assistant. It serves data via a versioned REST API
   and a read‑only MCP server, supporting API keys for higher limits. The service is aimed at adult fantasy sports participants and explicitly
   excludes wagering.
-
 url: https://raw.githubusercontent.com/api-evangelist/ballranks/refs/heads/main/apis.yml
-
 x-type: company
-
 x-source: harvest:new-submission
-
 x-tier: profiled
 x-tier-reason: enrichment pass 2026-10-08 (modular-v1; was harvest)
-
 specificationVersion: '0.20'
-
 created: '2026-10-08'
-
-modified: '2026-10-08'
-
+modified: '2026-10-12'
 tags:
 - Company
 - Fantasy Sports
 - AI
 - Rankings
 - Projections
-
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-
 common:
+- type: WellKnown
+  url: well-known/ballranks-well-known.yml
 - type: AgenticAccess
   url: agentic-access/ballranks-agentic-access.yml
 - type: Spectral
@@ -52,8 +41,6 @@ common:
   url: hosts/ballranks-hosts.yml
 - type: Vendors
   url: vendors/ballranks-vendors.yml
-- type: Leadership
-  url: https://ballranks.com/football/team
 - type: Authentication
   url: authentication/ballranks-authentication.yml
 - type: DomainSecurity
@@ -74,31 +61,48 @@ common:
   url: https://ballranks.com/privacy
 - type: SignUp
   url: https://ballranks.com/auth/sign-up?next=%2Faccount
-
+- type: GettingStarted
+  url: https://ballranks.com/developers#quick-start
+- type: ChangeLog
+  url: https://ballranks.com/developers#changelog
+- type: Plans
+  url: plans/ballranks-access.json
+- type: RateLimits
+  url: https://ballranks.com/developers#rate-limits
+- type: Pricing
+  url: https://ballranks.com/premium
+- type: VulnerabilityDisclosure
+  url: https://ballranks.com/developers#security
+- type: SecurityTxt
+  url: well-known/ballranks-security.txt
+- type: APICatalog
+  url: well-known/ballranks-api-catalog.json
+- type: MCPServer
+  url: mcp/ballranks-mcp.yml
+- type: AgentSkill
+  url: skills/ball-ranks/SKILL.md
+- type: GitHubRepository
+  url: https://github.com/Ollynov/ball-ranks-skills
 apis:
-- name: Ball Ranks API
-  description: Read‑only fantasy basketball and football rankings and projections.
-  humanURL: https://ballranks.com/developers
-  baseURL: https://ballranks.com
-  openAPI:
-    url: openapi/ballranks-openapi.json
-    type: OpenAPI
-  aid: ballranks:ball-ranks-api
 - aid: ballranks:ballranks-rankings-and-projections-api
-  name: Ball Ranks Rankings and projections API
-  description: >-
-    The Rankings and projections API from Ball Ranks — 4 operation(s) for rankings and projections.
-  humanURL: https://ballranks.com/developers
+  name: Ball Ranks API
+  description: 'Read-only fantasy basketball and football rankings and projections: four GET operations (weekly, season and player rankings, player
+    projections).'
   tags:
   - Rankings and projections
   properties:
   - type: OpenAPI
     url: openapi/ballranks-rankings-and-projections-api-openapi.yml
+  - type: PostmanCollection
+    url: collections/ballranks.postman_collection.json
+  - type: Documentation
+    url: https://ballranks.com/developers
+  humanURL: https://ballranks.com/developers#rest-api
+  baseURL: https://ballranks.com
 x-submission-notes: Fantasy-sports rankings/projections, not wagering.
-
-x-submission-probe: root/developers 200; /api/v1/rankings/season?sport=football 200 JSON (no key); /api/v1 bare and invented paths 404; MCP initialize
-  OK at /api/mcp ('ball-ranks-public-api' 1.1.0); soft-404 clean (404); no OpenAPI found
-
+x-submission-probe: 're-probed 2026-10-12 (issue #1): OpenAPI 3.1.0 at /openapi.json 200 (4 GETs); Postman v2.1 /developers/postman.json 200 (8
+  requests); /developers/access.json 200; /.well-known/security.txt 200; /.well-known/api-catalog 200 (linkset, REST + MCP); /api/mcp GET 405,
+  POST tools/list 200 anonymous (4 read-only tools)'
 x-submitted-by: help@ballranks.com (email/apisio, 2026-10-07T22:32:19+00:00)
 x-enrichment:
   date: '2026-10-08'
