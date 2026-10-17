@@ -1168,8 +1168,8 @@ paths:
           $ref: '#/components/responses/Unavailable'
 components:
   responses:
-    Unauthorized:
-      description: Invalid or revoked API key.
+    Forbidden:
+      description: The requested model requires Premium access.
       content:
         application/json:
           schema:
@@ -1193,12 +1193,6 @@ components:
                     type: string
                   message:
                     type: string
-      headers:
-        WWW-Authenticate:
-          description: Bearer authentication challenge.
-          schema:
-            type: string
-          example: Bearer realm="Ball Ranks API"
     Unavailable:
       description: The API or request limiter is temporarily unavailable.
       content:
@@ -1231,71 +1225,8 @@ components:
             type: integer
             minimum: 1
           example: 60
-    RateLimited:
-      description: Request limit reached. Wait for Retry-After seconds before retrying.
-      content:
-        application/json:
-          schema:
-            type: object
-            additionalProperties: false
-            required:
-            - apiVersion
-            - error
-            properties:
-              apiVersion:
-                type: string
-                const: '1'
-              error:
-                type: object
-                additionalProperties: true
-                required:
-                - code
-                - message
-                properties:
-                  code:
-                    type: string
-                  message:
-                    type: string
-      headers:
-        Retry-After:
-          description: Seconds to wait before retrying.
-          schema:
-            type: integer
-            minimum: 1
-          example: 60
-        X-RateLimit-Remaining:
-          description: Requests remaining in the exceeded limit window.
-          schema:
-            type: integer
-            minimum: 0
-          example: 0
     BadRequest:
       description: Invalid request.
-      content:
-        application/json:
-          schema:
-            type: object
-            additionalProperties: false
-            required:
-            - apiVersion
-            - error
-            properties:
-              apiVersion:
-                type: string
-                const: '1'
-              error:
-                type: object
-                additionalProperties: true
-                required:
-                - code
-                - message
-                properties:
-                  code:
-                    type: string
-                  message:
-                    type: string
-    Forbidden:
-      description: The requested model requires Premium access.
       content:
         application/json:
           schema:
@@ -1369,6 +1300,75 @@ components:
                     type: string
                   message:
                     type: string
+    RateLimited:
+      description: Request limit reached. Wait for Retry-After seconds before retrying.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+            - apiVersion
+            - error
+            properties:
+              apiVersion:
+                type: string
+                const: '1'
+              error:
+                type: object
+                additionalProperties: true
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
+          schema:
+            type: integer
+            minimum: 1
+          example: 60
+        X-RateLimit-Remaining:
+          description: Requests remaining in the exceeded limit window.
+          schema:
+            type: integer
+            minimum: 0
+          example: 0
+    Unauthorized:
+      description: Invalid or revoked API key.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+            - apiVersion
+            - error
+            properties:
+              apiVersion:
+                type: string
+                const: '1'
+              error:
+                type: object
+                additionalProperties: true
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      headers:
+        WWW-Authenticate:
+          description: Bearer authentication challenge.
+          schema:
+            type: string
+          example: Bearer realm="Ball Ranks API"
   securitySchemes:
     bearerAuth:
       type: http
