@@ -110,3 +110,8 @@ x-enrichment:
   artifacts_added: 11
   pass: modular-v1
   engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local
+x-removed-pointers:
+- type: Leadership
+  url: https://ballranks.com/football/team
+  removed: 2026-10-12
+  reason: a fantasy-football roster page, not a leadership page (roadmap#955)
