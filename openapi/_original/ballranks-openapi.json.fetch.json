@@ -1,0 +1,12 @@
+{
+ "url": "https://ballranks.com/openapi.json",
+ "requested_url": "https://ballranks.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 24772,
+ "sha256": "ca0b10932200cfade6db4e9e913340dbf304b4a731b34763702b69fc87d3e264",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
