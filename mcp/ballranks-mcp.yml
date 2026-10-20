@@ -2,8 +2,9 @@ generated: '2026-10-12'
 method: probed
 source: https://ballranks.com/api/mcp
 status: live
-description: Ball Ranks serves a read-only remote Model Context Protocol server (Streamable HTTP) on its own host. A GET answers 405 by design;
-  an anonymous POST initialize and tools/list answer 200 with four tools, each annotated read-only, non-destructive and idempotent.
+description: Ball Ranks serves a read-only remote Model Context Protocol server (Streamable HTTP) on its
+  own host. A GET answers 405 by design; an anonymous POST initialize and tools/list answer 200 with four
+  tools, each annotated read-only, non-destructive and idempotent.
 servers:
 - name: ball-ranks-public-api
   url: https://ballranks.com/api/mcp
@@ -48,3 +49,28 @@ deployment:
   endpoint: https://ballranks.com/api/mcp
   auth: none
   verified: probed
+tool_quality:
+  tool_count: 4
+  tokens_total: 3286
+  tokens_per_tool_median: 856
+  heavy_tools: []
+  heavy_tool_count: 0
+  params_total: 26
+  params_undescribed: 26
+  params_described_pct: 0.0
+  tools_with_undescribed_params: 4
+  tools_annotated: 4
+  annotated_pct: 100.0
+  state_changing_unhinted: []
+  tools_missing_schema: 0
+  short_descriptions: 0
+  duplicate_descriptions: 0
+  duplicate_names: 0
+  nonportable_names: []
+  output_schema_count: 4
+  token_estimate: chars/3.6 of each compact tool definition
+  source: mcp/ballranks-mcp-tools.json
+  measured: '2026-10-20'
+  scored: false
+  note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
+    from Glimind's agent-readiness audit.

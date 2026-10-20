@@ -1,0 +1,1114 @@
+{
+  "endpoint": "https://ballranks.com/api/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "ball-ranks-public-api",
+    "title": "Ball Ranks",
+    "version": "1.1.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "get_week_rankings",
+        "title": "Get weekly football rankings",
+        "description": "Return published weekly fantasy football rankings for one position, week, and scoring format. Use this for start/sit comparisons or a ranked position list. This tool does not support basketball.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "sport": {
+              "default": "football",
+              "type": "string",
+              "enum": [
+                "basketball",
+                "football"
+              ]
+            },
+            "season": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32
+                },
+                {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              ]
+            },
+            "week": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 18
+            },
+            "position": {
+              "default": "RB",
+              "type": "string",
+              "enum": [
+                "QB",
+                "RB",
+                "WR",
+                "TE",
+                "K",
+                "DST"
+              ]
+            },
+            "scoring_format": {
+              "default": "ppr",
+              "type": "string",
+              "enum": [
+                "standard",
+                "half_ppr",
+                "ppr"
+              ]
+            },
+            "model": {
+              "default": "v0",
+              "type": "string",
+              "enum": [
+                "v0",
+                "v1"
+              ]
+            },
+            "limit": {
+              "default": 50,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "offset": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          },
+          "required": [
+            "week"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "title": "Get weekly football rankings",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "_meta": {
+          "com.ballranks/source": "https://ballranks.com/developers",
+          "com.ballranks/support": "https://ballranks.com/support",
+          "securitySchemes": [
+            {
+              "type": "noauth"
+            }
+          ]
+        },
+        "outputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "meta": {
+              "type": "object",
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "const": "1"
+                },
+                "capability": {
+                  "type": "string",
+                  "enum": [
+                    "weekly_rankings",
+                    "season_rankings",
+                    "player_rankings",
+                    "player_projections"
+                  ]
+                },
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "basketball",
+                    "football"
+                  ]
+                },
+                "model": {
+                  "type": "string",
+                  "enum": [
+                    "v0",
+                    "v1"
+                  ]
+                },
+                "modelDataVersion": {
+                  "type": "string"
+                },
+                "generatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "updatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "apiVersion",
+                "capability",
+                "sport",
+                "model",
+                "modelDataVersion",
+                "generatedAt",
+                "updatedAt"
+              ],
+              "additionalProperties": false
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "query": {
+              "type": "object",
+              "properties": {
+                "season": {
+                  "type": [
+                    "string",
+                    "number"
+                  ]
+                },
+                "week": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "position": {
+                  "type": "string",
+                  "enum": [
+                    "QB",
+                    "RB",
+                    "WR",
+                    "TE",
+                    "K",
+                    "DST"
+                  ]
+                },
+                "scoringFormat": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "half_ppr",
+                    "ppr"
+                  ]
+                },
+                "limit": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "season",
+                "week",
+                "position",
+                "scoringFormat",
+                "limit",
+                "offset"
+              ],
+              "additionalProperties": false
+            },
+            "total": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "rankings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "player": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "slug": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "team": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "position": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "team",
+                      "position"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "rank": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "projectedPoints": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "player",
+                  "rank",
+                  "projectedPoints"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "meta",
+            "sourceUrl",
+            "query",
+            "total",
+            "rankings"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "get_season_rankings",
+        "title": "Get season rankings",
+        "description": "Return a paginated Ball Ranks season ranking board for fantasy basketball or football. Basketball uses nine-category per-game rankings; football accepts standard, half-PPR, or PPR scoring.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "sport": {
+              "type": "string",
+              "enum": [
+                "basketball",
+                "football"
+              ]
+            },
+            "season": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32
+                },
+                {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              ]
+            },
+            "scoring_format": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "half_ppr",
+                "ppr"
+              ]
+            },
+            "model": {
+              "default": "v0",
+              "type": "string",
+              "enum": [
+                "v0",
+                "v1"
+              ]
+            },
+            "limit": {
+              "default": 50,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "offset": {
+              "default": 0,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            }
+          },
+          "required": [
+            "sport"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "title": "Get season rankings",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "_meta": {
+          "com.ballranks/source": "https://ballranks.com/developers",
+          "com.ballranks/support": "https://ballranks.com/support",
+          "securitySchemes": [
+            {
+              "type": "noauth"
+            }
+          ]
+        },
+        "outputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "meta": {
+              "type": "object",
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "const": "1"
+                },
+                "capability": {
+                  "type": "string",
+                  "enum": [
+                    "weekly_rankings",
+                    "season_rankings",
+                    "player_rankings",
+                    "player_projections"
+                  ]
+                },
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "basketball",
+                    "football"
+                  ]
+                },
+                "model": {
+                  "type": "string",
+                  "enum": [
+                    "v0",
+                    "v1"
+                  ]
+                },
+                "modelDataVersion": {
+                  "type": "string"
+                },
+                "generatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "updatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "apiVersion",
+                "capability",
+                "sport",
+                "model",
+                "modelDataVersion",
+                "generatedAt",
+                "updatedAt"
+              ],
+              "additionalProperties": false
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "query": {
+              "type": "object",
+              "properties": {
+                "season": {
+                  "type": [
+                    "string",
+                    "number"
+                  ]
+                },
+                "scoring": {
+                  "type": "string",
+                  "const": "nine_category"
+                },
+                "mode": {
+                  "type": "string",
+                  "const": "per_game"
+                },
+                "scoringFormat": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "half_ppr",
+                    "ppr"
+                  ]
+                },
+                "limit": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "season",
+                "limit",
+                "offset"
+              ],
+              "additionalProperties": false
+            },
+            "total": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "rankings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "player": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "slug": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "team": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "position": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "team",
+                      "position"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "rank": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "mode": {
+                    "type": "string",
+                    "const": "per_game"
+                  },
+                  "scoring": {
+                    "type": "string",
+                    "const": "nine_category"
+                  },
+                  "positionRank": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "projectedPoints": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "player",
+                  "rank"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "meta",
+            "sourceUrl",
+            "query",
+            "total",
+            "rankings"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "get_player_rankings",
+        "title": "Get a player's season ranking",
+        "description": "Look up one player's published Ball Ranks season ranking by player ID or slug. Use this when the user asks where a specific player ranks.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "sport": {
+              "type": "string",
+              "enum": [
+                "basketball",
+                "football"
+              ]
+            },
+            "player": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "season": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32
+                },
+                {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              ]
+            },
+            "scoring_format": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "half_ppr",
+                "ppr"
+              ]
+            },
+            "model": {
+              "default": "v0",
+              "type": "string",
+              "enum": [
+                "v0",
+                "v1"
+              ]
+            }
+          },
+          "required": [
+            "sport",
+            "player"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "title": "Get a player's season ranking",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "_meta": {
+          "com.ballranks/source": "https://ballranks.com/developers",
+          "com.ballranks/support": "https://ballranks.com/support",
+          "securitySchemes": [
+            {
+              "type": "noauth"
+            }
+          ]
+        },
+        "outputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "meta": {
+              "type": "object",
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "const": "1"
+                },
+                "capability": {
+                  "type": "string",
+                  "enum": [
+                    "weekly_rankings",
+                    "season_rankings",
+                    "player_rankings",
+                    "player_projections"
+                  ]
+                },
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "basketball",
+                    "football"
+                  ]
+                },
+                "model": {
+                  "type": "string",
+                  "enum": [
+                    "v0",
+                    "v1"
+                  ]
+                },
+                "modelDataVersion": {
+                  "type": "string"
+                },
+                "generatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "updatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "apiVersion",
+                "capability",
+                "sport",
+                "model",
+                "modelDataVersion",
+                "generatedAt",
+                "updatedAt"
+              ],
+              "additionalProperties": false
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "player": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "team": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "position": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "team",
+                "position"
+              ],
+              "additionalProperties": false
+            },
+            "season": {
+              "type": [
+                "string",
+                "number"
+              ]
+            },
+            "scoringFormat": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "half_ppr",
+                "ppr"
+              ]
+            },
+            "ranking": {
+              "type": "object",
+              "properties": {
+                "rank": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "value": {
+                  "type": "number"
+                },
+                "mode": {
+                  "type": "string",
+                  "const": "per_game"
+                },
+                "scoring": {
+                  "type": "string",
+                  "const": "nine_category"
+                },
+                "positionRank": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "projectedPoints": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "rank"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "meta",
+            "sourceUrl",
+            "player",
+            "season",
+            "ranking"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "name": "get_player_projections",
+        "title": "Get a player's projection",
+        "description": "Look up one player's published season projection, or a weekly football projection, by player ID or slug. Weekly projections require scope=weekly and a week number.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "sport": {
+              "type": "string",
+              "enum": [
+                "basketball",
+                "football"
+              ]
+            },
+            "player": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "scope": {
+              "default": "season",
+              "type": "string",
+              "enum": [
+                "season",
+                "weekly"
+              ]
+            },
+            "season": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32
+                },
+                {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              ]
+            },
+            "week": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 18
+            },
+            "scoring_format": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "half_ppr",
+                "ppr"
+              ]
+            },
+            "model": {
+              "default": "v0",
+              "type": "string",
+              "enum": [
+                "v0",
+                "v1"
+              ]
+            }
+          },
+          "required": [
+            "sport",
+            "player"
+          ],
+          "additionalProperties": false
+        },
+        "annotations": {
+          "title": "Get a player's projection",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "_meta": {
+          "com.ballranks/source": "https://ballranks.com/developers",
+          "com.ballranks/support": "https://ballranks.com/support",
+          "securitySchemes": [
+            {
+              "type": "noauth"
+            }
+          ]
+        },
+        "outputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "meta": {
+              "type": "object",
+              "properties": {
+                "apiVersion": {
+                  "type": "string",
+                  "const": "1"
+                },
+                "capability": {
+                  "type": "string",
+                  "enum": [
+                    "weekly_rankings",
+                    "season_rankings",
+                    "player_rankings",
+                    "player_projections"
+                  ]
+                },
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "basketball",
+                    "football"
+                  ]
+                },
+                "model": {
+                  "type": "string",
+                  "enum": [
+                    "v0",
+                    "v1"
+                  ]
+                },
+                "modelDataVersion": {
+                  "type": "string"
+                },
+                "generatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "updatedAt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "apiVersion",
+                "capability",
+                "sport",
+                "model",
+                "modelDataVersion",
+                "generatedAt",
+                "updatedAt"
+              ],
+              "additionalProperties": false
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "player": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "team": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "position": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "team",
+                "position"
+              ],
+              "additionalProperties": false
+            },
+            "scope": {
+              "type": "string",
+              "enum": [
+                "season",
+                "weekly"
+              ]
+            },
+            "season": {
+              "type": [
+                "string",
+                "number"
+              ]
+            },
+            "week": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "scoringFormat": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "half_ppr",
+                "ppr"
+              ]
+            },
+            "projection": {
+              "type": "object",
+              "properties": {
+                "games": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "minutesPerGame": {
+                  "type": "number"
+                },
+                "projectedPoints": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "positionRank": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "opponent": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "home": {
+                  "type": "boolean"
+                },
+                "stats": {
+                  "type": "object",
+                  "properties": {
+                    "pts": {
+                      "type": "number"
+                    },
+                    "reb": {
+                      "type": "number"
+                    },
+                    "ast": {
+                      "type": "number"
+                    },
+                    "stl": {
+                      "type": "number"
+                    },
+                    "blk": {
+                      "type": "number"
+                    },
+                    "fg3m": {
+                      "type": "number"
+                    },
+                    "fg_pct": {
+                      "type": "number"
+                    },
+                    "ft_pct": {
+                      "type": "number"
+                    },
+                    "tov": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "pts",
+                    "reb",
+                    "ast",
+                    "stl",
+                    "blk",
+                    "fg3m",
+                    "fg_pct",
+                    "ft_pct",
+                    "tov"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "meta",
+            "sourceUrl",
+            "player",
+            "scope",
+            "season",
+            "projection"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ]
+  }
+}
