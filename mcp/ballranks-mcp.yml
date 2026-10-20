@@ -17,6 +17,8 @@ servers:
   humanURL: https://ballranks.com/developers#mcp
 tools:
 - name: get_week_rankings
+  description: Return published weekly fantasy football rankings for one position, week, and scoring format.
+    Use this for start/sit comparisons or a ranked position list. This tool does not support basketball.
   title: Get weekly football rankings
   annotations:
     readOnlyHint: true
@@ -24,6 +26,8 @@ tools:
     idempotentHint: true
     openWorldHint: true
 - name: get_season_rankings
+  description: Return a paginated Ball Ranks season ranking board for fantasy basketball or football.
+    Basketball uses nine-category per-game rankings; football accepts standard, half-PPR, or PPR scoring.
   title: Get season rankings
   annotations:
     readOnlyHint: true
@@ -31,6 +35,8 @@ tools:
     idempotentHint: true
     openWorldHint: true
 - name: get_player_rankings
+  description: Look up one player's published Ball Ranks season ranking by player ID or slug. Use this
+    when the user asks where a specific player ranks.
   title: Get a player's season ranking
   annotations:
     readOnlyHint: true
@@ -38,6 +44,8 @@ tools:
     idempotentHint: true
     openWorldHint: true
 - name: get_player_projections
+  description: Look up one player's published season projection, or a weekly football projection, by player
+    ID or slug. Weekly projections require scope=weekly and a week number.
   title: Get a player's projection
   annotations:
     readOnlyHint: true
@@ -74,3 +82,4 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools_count: 4
