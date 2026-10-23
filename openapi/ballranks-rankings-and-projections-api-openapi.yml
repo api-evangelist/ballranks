@@ -1378,3 +1378,9 @@ components:
 externalDocs:
   description: Ball Ranks developer documentation
   url: https://ballranks.com/developers
+x-provenance:
+  method: harvested
+  publisher: Ball Ranks
+  source: https://ballranks.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
